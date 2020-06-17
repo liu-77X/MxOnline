@@ -13,11 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
+from django.views.static import serve
 
 import xadmin
+from MxOnline.settings import MEDIA_ROOT
 from apps.organizations.views import OrgView
 from apps.users.views import LoginView, LogoutView
 
@@ -30,4 +33,7 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(), name ='logout'),
     #配置授课机构表展示
     path('org_list/', OrgView.as_view(),name='org_list'),
+    # 配置上传文件的访问url
+    url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+
 ]
