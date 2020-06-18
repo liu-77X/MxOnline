@@ -54,7 +54,7 @@ class OrgView(View):
         #                'sort':sort,
         #                'hot_orgs':hot_orgs,
         #                })
-        return render(request,'org-list.html',{'all_orgs':orgs,'org_nums':org_nums,'all_citys':all_citys,'category':category,})
+        return render(request,'org-list.html',{'city_id':city_id,'all_orgs':orgs,'org_nums':org_nums,'all_citys':all_citys,'category':category,})
 
 class AddAsk(View):
     """处理用户咨询模块"""
