@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 from django.views.static import serve
 
 import xadmin
 from MxOnline.settings import MEDIA_ROOT
+from apps.courses.views import CourseListView
 from apps.organizations.views import OrgView
 from apps.users.views import LoginView, LogoutView
 
@@ -29,11 +30,14 @@ urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     # path('', views.index),
     path('', TemplateView.as_view(template_name="index.html"),name='index'),
+    path('course-list/',CourseListView.as_view(), name='course-list'),
     path('login/', LoginView.as_view(),name='login'),
     path('logout/',LogoutView.as_view(), name ='logout'),
     #配置授课机构表展示
     path('org_list/', OrgView.as_view(),name='org_list'),
     # 配置上传文件的访问url
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+    # 课程相关页面
+    url(r'^course/', include(('apps.courses.urls', 'courses'), namespace='course')),
 
 ]
