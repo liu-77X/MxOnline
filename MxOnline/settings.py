@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.courses.apps.CoursesConfig',
     'apps.organizations.apps.OrganizationsConfig',
     'apps.operations.apps.OperationsConfig',
+    'pure_pagination',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,10 @@ STATICFILES_DIRS = [
 STATIC_URL = '/static/'
 MEDIA_URL='/meida/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
+# 分页相关的设置
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 3, # 主分页部分显示几个
+    'MARGIN_PAGES_DISPLAYED': 2, # 省略号前面或者后面显示几个
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}
