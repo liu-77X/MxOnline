@@ -17,6 +17,7 @@ class OrgView(View):
         """
         all_orgs = CourseOrg.objects.all()
         all_citys = City.objects.all()
+        # 支持切片，取前三个
         hot_orgs = all_orgs.order_by("-click_nums")[:3]
         # 获取点击的类目
         category = request.GET.get("ct","")
