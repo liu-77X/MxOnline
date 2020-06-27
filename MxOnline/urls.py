@@ -34,10 +34,13 @@ urlpatterns = [
     path('login/', LoginView.as_view(),name='login'),
     path('logout/',LogoutView.as_view(), name ='logout'),
     #配置授课机构表展示
-    path('org_list/', OrgView.as_view(),name='org_list'),
+    # path('org_list/', OrgView.as_view(),name='org_list'),
     # 配置上传文件的访问url
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
     # 课程相关页面
     url(r'^course/', include(('apps.courses.urls', 'courses'), namespace='course')),
+    # 授课机构相关配置,跳转到org下面的url
+    url(r'^org/', include(('apps.organizations.urls', 'organizations'), namespace='org')),
+
 
 ]
