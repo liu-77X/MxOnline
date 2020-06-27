@@ -77,10 +77,7 @@ class TeacherListView(View):
     def get(self, request, *args, **kwargs):
         all_teachers = Teacher.objects.all()
         teacher_nums = all_teachers.count()
-
         hot_teachers = Teacher.objects.all().order_by("-click_nums")[:3]
-
-
         # 讲师分页
         try:
             page = request.GET.get('page', 1)
